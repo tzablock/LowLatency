@@ -20,4 +20,9 @@ public class JdbcController {
     public @ResponseBody List<Actor> getActorsByFirstName(@PathVariable("firstname") String firstName){
         return jdbcService.getActorsByFirstName(firstName);
     }
+
+    @PostMapping(value = "/new-actor")
+    public void insertNewActor(@RequestBody Actor actor){
+        jdbcService.insertActor(actor);
+    }
 }

@@ -15,6 +15,7 @@ public class PostresqlJdbcService {
     private PostresqlJdbcRepository repository;
 
     private static final String SELECT_QUERY = "SELECT * FROM %s WHERE %s=%s";
+    private static final String INSERT_QUERY = "INSERT INTO %s(%s) VALUES (%s)";
 
     @Autowired
     public PostresqlJdbcService(PostresqlJdbcRepository repository) {
@@ -33,5 +34,11 @@ public class PostresqlJdbcService {
         String colName = "first_name";
         String query = String.format(SELECT_QUERY, tableName, colName, "'"+firstName+"'");
         return repository.select(query, parseActors);
+    }
+
+    public void insertActor(Actor actor){
+        String tableName = "actor";
+        String query = String.format(INSERT_QUERY, tableName, actor.colNames(), actor.colValues());
+        repository.insert(query);
     }
 }

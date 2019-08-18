@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import java.util.Date;
 
+import static com.lowlatency.entities.FieldsUtils.dateIntoSqlFormat;
+
 @Getter
 @Setter
 public class Actor {
@@ -22,5 +24,13 @@ public class Actor {
         this.firstName = firstName;
         this.lastName = lastName;
         this.lastUpdate = lastUpdate;
+    }
+
+    public String colNames(){
+        return "actor_id, first_name, last_name, last_update";
+    }
+
+    public String colValues(){
+        return String.format("%s, %s, %s, %s", actorId, "'"+firstName+"'", "'"+lastName+"'", "'"+dateIntoSqlFormat(lastUpdate)+"'");
     }
 }
