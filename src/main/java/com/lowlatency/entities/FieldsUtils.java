@@ -6,6 +6,6 @@ import java.util.Date;
 public class FieldsUtils {
     static String dateIntoSqlFormat(Date date){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(date);
+        return date == null ? null : sdf.format(date);
     }
 }
