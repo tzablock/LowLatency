@@ -23,3 +23,16 @@ export const insert = (name, surname) => (setInjectStatus) => {
    .then(res => setInjectStatus(res))
    .catch(err => console.log(err))
 }
+
+export const del = (actorId) => (setDeletionStatus) => (updateActors) => {
+   const HOST = "http://localhost:8080"
+   const PATH = "/delete-actor"
+   fetch(HOST + PATH + "/" + actorId,
+   {
+   method: 'DELETE',
+   })
+   .then(res => res.json())
+   .then(res => {setDeletionStatus(res); return res;})
+   .then(res => {console.log(res); updateActors(parseInt(res.actorId))})
+   .catch(err => console.log(err))
+}

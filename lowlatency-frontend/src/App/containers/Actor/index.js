@@ -1,10 +1,12 @@
 import Actor from '../../components/Actor';
-import { createActorNameAction, createActorListAction, createActorNameInjectAction, createActorSurnameInjectAction, createInjectStatusAction } from '../../actions/actor';
+import { createActorNameAction, createActorListAction, updateActorListAction, createActorNameInjectAction, createActorSurnameInjectAction, createInjectStatusAction, createDeletionStatusAction } from '../../actions/actor';
 import { connect } from 'react-redux'
-import {get, insert} from './rest'
+import {get, insert, del} from './rest'
 
 const setActors = dispatch => actors => dispatch(createActorListAction(actors))
+const updateActors = dispatch => actorId => dispatch(updateActorListAction(actorId))
 const setInjectStatus = dispatch => status => dispatch(createInjectStatusAction(status))
+const setDeletionStatus = dispatch => status => dispatch(createDeletionStatusAction(status))
 
 const setNameToState = dispatch => {
 return {
@@ -12,7 +14,8 @@ return {
   setInjectName: name => {dispatch(createActorNameInjectAction(name))},
   setInjectSurname: name => {dispatch(createActorSurnameInjectAction(name))},
   requestActorsByName: name => {get(name)(setActors(dispatch))},
-  injectNewActor: (name, surname) => {insert(name, surname)(setInjectStatus(dispatch))}
+  injectNewActor: (name, surname) => {insert(name, surname)(setInjectStatus(dispatch))},
+  deleteActorById: (actorId) => {del(actorId)(setDeletionStatus(dispatch))(updateActors(dispatch))}
 }
 }
 
@@ -22,7 +25,8 @@ return {
   injectName: state.injectName,
   injectSurname: state.injectSurname,
   injectStatus: state.injectStatus,
-  actors: state.actors,
+  deleteStatus: state.deleteStatus,
+  actors: state.actors
 }
 }
 

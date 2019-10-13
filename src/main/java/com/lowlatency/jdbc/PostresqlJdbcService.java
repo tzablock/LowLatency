@@ -16,6 +16,7 @@ public class PostresqlJdbcService {
 
     private static final String SELECT_QUERY = "SELECT * FROM %s WHERE %s=%s";
     private static final String INSERT_QUERY = "INSERT INTO %s(%s) VALUES (%s)";
+    private static final String DELETE_QUERY = "DELETE FROM %s WHERE actor_id=%s;";
 
     @Autowired
     public PostresqlJdbcService(PostresqlJdbcRepository repository) {
@@ -40,5 +41,11 @@ public class PostresqlJdbcService {
         String tableName = "actor";
         String query = String.format(INSERT_QUERY, tableName, actor.colNames(), actor.colValues());
         repository.insert(query);
+    }
+
+    public void deleteActorById(String actorId) {
+        String tableName = "actor";
+        String query = String.format(DELETE_QUERY, tableName, actorId);
+        repository.delete(query);
     }
 }

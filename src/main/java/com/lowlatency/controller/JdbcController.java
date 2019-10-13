@@ -30,6 +30,21 @@ public class JdbcController {
     }
 
     @CrossOrigin //to prevent core exeption
+    @DeleteMapping(value = "/delete-actor/{actorId}")
+    public ResponseEntity<Result> deleteActorById(@PathVariable("actorId") String actorId){
+        try {
+            jdbcService.deleteActorById(actorId);
+            return ResponseEntity.ok()
+                    .body(Result.build().success(true).errorMessage("").actorId(actorId));
+        } catch (Exception e){
+            return ResponseEntity.status(400)
+                    .body(Result.build().success(false).errorMessage(e.getMessage()).actorId(""));
+        }
+    }
+
+    //TODO edit action                            make buttons near to listed actors
+
+    @CrossOrigin //to prevent core exeption
     @PostMapping(value = "/new-actor")
     public @ResponseBody ResponseEntity<Result> insertNewActor(@RequestBody Actor actor){
         try {

@@ -1,4 +1,4 @@
-import {ACTOR_NAME_TO_GET, LIST_OF_ACTORS, ACTOR_NAME_TO_INJECT, ACTOR_SURNAME_TO_INJECT, INJECT_STATUS} from '../actions/actor'
+import {ACTOR_NAME_TO_GET, LIST_OF_ACTORS, ACTOR_NAME_TO_INJECT, ACTOR_SURNAME_TO_INJECT, INJECT_STATUS, DELETE_STATUS, UPDATE_LIST_OF_ACTORS} from '../actions/actor'
 
 export function addSearchName(state = '', action){
    switch(action.type){
@@ -36,10 +36,21 @@ export function addInjectStatus(state = {"success":true,"errorMessage":""}, acti
     }
 }
 
+export function addDeletionStatus(state = {"success":true,"errorMessage":"","actorId":""}, action) {
+    switch(action.type){
+       case DELETE_STATUS:
+           return action.status;
+        default:
+           return state;
+    }
+}
+
 export function addListOfActors(state = [], action){
     switch(action.type){
         case LIST_OF_ACTORS:
             return action.actors;
+        case UPDATE_LIST_OF_ACTORS:
+            return state.filter(a => a.actorId !== action.deletedActorId);
         default:
             return state;
     }

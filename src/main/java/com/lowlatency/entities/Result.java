@@ -8,6 +8,7 @@ import lombok.Setter;
 public class Result {
     private boolean success;
     private String errorMessage;
+    private String actorId;
 
     public Result success(boolean success){
         this.success = success;
@@ -22,4 +23,9 @@ public class Result {
         return new Result();
     }
     private Result(){}
+
+    public Result actorId(String actorId) {
+        this.actorId = actorId;
+        return this;
+    }
 }

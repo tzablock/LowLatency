@@ -1,9 +1,11 @@
-
 export const ACTOR_NAME_TO_GET = 'ACTOR.NAME.TO.GET';
 export const LIST_OF_ACTORS = 'ACTOR.LIST.FROM.SERVER';
 export const ACTOR_NAME_TO_INJECT = "ACTOR.NAME.TO.INJECT";
 export const ACTOR_SURNAME_TO_INJECT = "ACTOR.SURNAME.TO.INJECT";
 export const INJECT_STATUS = "INJECT.STATUS";
+export const DELETE_STATUS = "DELETE.STATUS";
+export const UPDATE_LIST_OF_ACTORS = "UPDATE.LIST.OF.ACTORS";
+
 
 export const createActorNameAction = name => {
     return {
@@ -33,9 +35,23 @@ export const createInjectStatusAction = status => {
     }
 }
 
+export const createDeletionStatusAction = status => {
+    return {
+    type: DELETE_STATUS,
+    status: status
+    }
+}
+
 export const createActorListAction = actors => {
     return {
     type: LIST_OF_ACTORS,
     actors: actors
+    }
+};
+
+export const updateActorListAction = deletedActorId => {
+    return {
+    type: UPDATE_LIST_OF_ACTORS,
+    deletedActorId: deletedActorId
     }
 };

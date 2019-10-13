@@ -5,7 +5,7 @@ class Actor extends React.Component {
     return    (
                  <div>
                      <ActorBrowser setSearchName={this.props.setSearchName} requestActorsByName={this.props.requestActorsByName} searchName={this.props.searchName}/>
-                     <ActorBoard actors={this.props.actors}/>
+                     <ActorBoard actors={this.props.actors} deleteActorById={this.props.deleteActorById} deleteStatus={this.props.deleteStatus}/>
                      <ActorInject setInjectName={this.props.setInjectName} setInjectSurname={this.props.setInjectSurname}
                                   injectNewActor={this.props.injectNewActor} injectStatus={this.props.injectStatus}
                                   injectName={this.props.injectName} injectSurname={this.props.injectSurname}/>
@@ -31,7 +31,10 @@ class ActorBoard extends React.Component {
         return (
                 <div>
                    <h1>List Found Actors:</h1>
-                   {this.props.actors.map(a => <li key={a.actorId}>{a.actorId}:{a.firstName} {a.lastName} Last update:{a.lastUpdate}</li>)}
+                   {this.props.actors.map(a => <li key={a.actorId}>{a.actorId}:{a.firstName} {a.lastName} Last update:{a.lastUpdate}
+                                               <button type="button" onClick={() => this.props.deleteActorById(a.actorId)}>DELETE</button></li>)}
+                <b>{this.props.deleteStatus.success? "You can delete or modify actor." : this.props.deleteStatus}</b>
+                <b>{this.props.deleteStatus.actorId === "" ? "" : "Last deleted actor id was:" + this.props.deleteStatus.actorId}</b>
                 </div>
         )
     }
@@ -61,7 +64,7 @@ class FirstNameInject extends React.Component {
         )
     }
 }
-//value={this.props.injectName} name="input1"
+
 class LastNameInject extends React.Component {
     render(){
         return (
@@ -72,6 +75,5 @@ class LastNameInject extends React.Component {
         )
     }
 }
-//value={this.props.injectSurname} name="input2"
 
 export default Actor
