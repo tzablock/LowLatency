@@ -33,6 +33,20 @@ export const del = (actorId) => (setDeletionStatus) => (updateActors) => {
    })
    .then(res => res.json())
    .then(res => {setDeletionStatus(res); return res;})
-   .then(res => {console.log(res); updateActors(parseInt(res.actorId))})
+   .then(res => updateActors(parseInt(res.actorId)))
    .catch(err => console.log(err))
+}
+
+export const edit = (actorId, name, surname) => (setUpdateStatus) => {
+    const HOST = "http://localhost:8080"
+    const PATH = "/edit-actor"
+    fetch(HOST + PATH,
+    {
+    method: 'POST',
+    body: JSON.stringify({actorId: actorId, firstName: name, lastName: surname, lastUpdate: null}),
+    headers: {"Content-Type": "application/json"}
+    })
+    .then(res => res.json())
+    .then(res => setUpdateStatus(res))
+    .catch(err => console.log(err))
 }

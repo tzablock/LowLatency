@@ -8,6 +8,8 @@ class Actor extends React.Component {
                      <ActorBoard actors={this.props.actors} deleteActorById={this.props.deleteActorById} deleteStatus={this.props.deleteStatus}/>
                      <ActorInject setInjectName={this.props.setInjectName} setInjectSurname={this.props.setInjectSurname}
                                   injectNewActor={this.props.injectNewActor} injectStatus={this.props.injectStatus}
+                                  editActor={this.props.editActor} actorIdToEdit={this.props.actorIdToEdit} setActorIdToEdit={this.props.setActorIdToEdit}
+                                  editStatus={this.props.editStatus}
                                   injectName={this.props.injectName} injectSurname={this.props.injectSurname}/>
                  </div>
               );
@@ -45,13 +47,35 @@ class ActorInject extends React.Component {
         return (
                 <div>
                     <h1>Create New Actor: </h1>
-                    <FirstNameInject injectName={this.props.injectName} setInjectName={this.props.setInjectName} />
-                    <LastNameInject injectSurname={this.props.injectSurname} setInjectSurname={this.props.setInjectSurname} />
+                    <ActorId setActorIdToEdit={this.props.setActorIdToEdit} />
+                    <FirstNameInject setInjectName={this.props.setInjectName} />
+                    <LastNameInject setInjectSurname={this.props.setInjectSurname} />
                     <button onClick={() => this.props.injectNewActor(this.props.injectName, this.props.injectSurname)}>Inject Actor</button>
-                    {!this.props.injectStatus.success ? <div><b>{this.props.injectStatus.errorMessage}</b></div> : <div><b>Inject next record.</b></div>}
+                    <button onClick={() => this.props.editActor(this.props.actorIdToEdit, this.props.injectName, this.props.injectSurname)}>Edit Actor</button>
+                    {!this.props.injectStatus.success ?
+                                     <div><b>{this.props.injectStatus.errorMessage}</b></div>
+                                                      :
+                                     <div><b>Inject next record.</b></div>}
+                    {!this.props.editStatus.success ?
+                                     <div><b>{this.props.editStatus.errorMessage}</b></div>
+                                                      :
+                                     this.props.editStatus.actorId ?
+                                     <div><b>Actor with id: {this.props.editStatus.actorId} edited.</b></div>
+                                                      : ""}
                 </div>
         )
     };
+}
+
+class ActorId extends React.Component{
+    render(){
+        return (
+                <div>
+                    <p>Id (only for edit):</p>
+                    <input type="text" onChange={(e) => {this.props.setActorIdToEdit(e.target.value)}}/>
+                </div>
+        )
+    }
 }
 
 class FirstNameInject extends React.Component {

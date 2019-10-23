@@ -50,10 +50,24 @@ public class JdbcController {
         try {
             jdbcService.insertActor(actor);
             return ResponseEntity.ok()
-                    .body(Result.build().success(true).errorMessage(""));
+                    .body(Result.build().success(true).errorMessage("").actorId(String.valueOf(actor.getActorId())));
         } catch (Exception e){
             return ResponseEntity.status(400)
-                    .body(Result.build().success(false).errorMessage(e.getMessage()));
+                    .body(Result.build().success(false).errorMessage(e.getMessage()).actorId(String.valueOf(actor.getActorId())));
         }
     }
+
+    @CrossOrigin
+    @PostMapping(value = "/edit-actor")
+    public @ResponseBody ResponseEntity<Result> editActor(@RequestBody Actor actor){
+        try {
+            jdbcService.updateActor(actor);
+            return ResponseEntity.ok()
+                    .body(Result.build().success(true).errorMessage("").actorId(String.valueOf(actor.getActorId())));
+        } catch (Exception e){
+            return ResponseEntity.status(400)
+                    .body(Result.build().success(false).errorMessage(e.getMessage()).actorId(String.valueOf(actor.getActorId())));
+        }
+    }
+
 }

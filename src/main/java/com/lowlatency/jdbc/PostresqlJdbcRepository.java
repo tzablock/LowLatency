@@ -27,6 +27,10 @@ public class PostresqlJdbcRepository { //TODO write tests
         exceptionHandle((stn) -> stn.executeUpdate(query), query, String.format("Problem with deletion with use of query: %s", query));
     }
 
+    public void update(String query) {
+        exceptionHandle((stn) -> stn.executeUpdate(query), query, String.format("Problem with update with use of query: %s", query));
+    }
+
     private <T> T exceptionHandle(ResultParseFuntion<Statement, T> executeQuery, String query, String exceptionMessage){
         try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost/dvdrental?user=tomaszzablocki")){
             try (Statement stn = con.createStatement()){

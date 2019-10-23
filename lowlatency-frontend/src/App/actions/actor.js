@@ -5,6 +5,8 @@ export const ACTOR_SURNAME_TO_INJECT = "ACTOR.SURNAME.TO.INJECT";
 export const INJECT_STATUS = "INJECT.STATUS";
 export const DELETE_STATUS = "DELETE.STATUS";
 export const UPDATE_LIST_OF_ACTORS = "UPDATE.LIST.OF.ACTORS";
+export const ACTOR_ID_TO_EDIT = "ACTOR.ID.TO.EDIT";
+export const EDIT_STATUS = "EDIT.STATUS";
 
 
 export const createActorNameAction = name => {
@@ -42,6 +44,13 @@ export const createDeletionStatusAction = status => {
     }
 }
 
+export const createEditStatusAction = status => {
+    return {
+    type: EDIT_STATUS,
+    status: status
+    }
+}
+
 export const createActorListAction = actors => {
     return {
     type: LIST_OF_ACTORS,
@@ -55,3 +64,10 @@ export const updateActorListAction = deletedActorId => {
     deletedActorId: deletedActorId
     }
 };
+
+export const createActorIdToEditAction = id => {
+    return {
+    type: ACTOR_ID_TO_EDIT,
+    actorIdToEdit: id
+    }
+}

@@ -36,4 +36,8 @@ public class Actor {
     public String colValues(){
         return String.format("%s, %s", "'"+firstName+"'", "'"+lastName+"'");
     }
+
+    public String colNamesToValues() {
+        return String.format("first_name = '%s', last_name = '%s'", firstName, lastName);
+    }
 }
