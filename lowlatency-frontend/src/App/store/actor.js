@@ -1,4 +1,8 @@
-import {EDIT_STATUS, ACTOR_NAME_TO_GET, LIST_OF_ACTORS, ACTOR_NAME_TO_INJECT, ACTOR_SURNAME_TO_INJECT, INJECT_STATUS, DELETE_STATUS, UPDATE_LIST_OF_ACTORS, ACTOR_ID_TO_EDIT} from '../actions/actor'
+import {EDIT_STATUS, ACTOR_NAME_TO_GET,
+        LIST_OF_ACTORS, ACTOR_NAME_TO_INJECT,
+        ACTOR_SURNAME_TO_INJECT, INJECT_STATUS,
+        DELETE_STATUS, UPDATE_LIST_OF_ACTORS,
+        ACTOR_ID_TO_EDIT} from '../actions/actor'
 
 export function addSearchName(state = '', action){
    switch(action.type){

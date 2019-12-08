@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 import { createStore } from 'redux'
-import { addEditionStatus, addSearchName,addListOfActors,addInjectName,addInjectSurname, addInjectStatus, addDeletionStatus, addActorIdToEdit } from './actor'
+import { addEditionStatus, addSearchName,
+         addListOfActors,addInjectName,
+         addInjectSurname, addInjectStatus,
+         addDeletionStatus, addActorIdToEdit } from './actor'
 
 const combinedReducers = combineReducers({
                             searchName: addSearchName,

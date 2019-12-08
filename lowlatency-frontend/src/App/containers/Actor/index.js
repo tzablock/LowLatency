@@ -1,5 +1,9 @@
 import Actor from '../../components/Actor';
-import { createEditStatusAction, createActorNameAction, createActorListAction, updateActorListAction, createActorNameInjectAction, createActorIdToEditAction, createActorSurnameInjectAction, createInjectStatusAction, createDeletionStatusAction } from '../../actions/actor';
+import { createEditStatusAction, createActorNameAction,
+         createActorListAction, updateActorListAction,
+         createActorNameInjectAction, createActorIdToEditAction,
+         createActorSurnameInjectAction, createInjectStatusAction,
+         createDeletionStatusAction } from '../../actions/actor';
 import { connect } from 'react-redux'
 import {get, insert, del, edit} from './rest'
 
